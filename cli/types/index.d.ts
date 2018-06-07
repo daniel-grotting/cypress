@@ -1374,6 +1374,13 @@ declare namespace Cypress {
    */
   interface VisitOptions extends Loggable, Timeoutable {
     /**
+     * Adds Basic Authorization headers
+     * 
+     * @param {ObjectLike} auth
+     */
+    auth: ObjectLike
+
+    /**
      * Called before your page has loaded all of its resources.
      *
      * @param {Window} contentWindow the remote page's window object
@@ -3246,7 +3253,7 @@ declare namespace Cypress {
   }
 
   // Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
-  type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in U]: never } & { [x: string]: never })[T]
+  type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T]
   // @ts-ignore TODO - remove this if possible. Seems a recent change to TypeScript broke this. Possibly https://github.com/Microsoft/TypeScript/pull/17912
   type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>
 }
